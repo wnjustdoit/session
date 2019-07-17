@@ -8,7 +8,7 @@ package com.caiya.session.redis.util;
  */
 public class Constant {
 
-    public static final String DEFAULT_CACHE_NAME = "mama_session";
+    public static final String DEFAULT_CACHE_NAME = "caiya_session";
 
     public static final long DEFAULT_EXPIRATION = 60 * 60 * 2;
 

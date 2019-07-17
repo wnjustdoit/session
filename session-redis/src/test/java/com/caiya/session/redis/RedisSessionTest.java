@@ -111,7 +111,7 @@ public class RedisSessionTest {
         assertTrue(duration.getSeconds() <= 0 && duration.getSeconds() > -10);// nearly test
 
         session.setMaxInactiveInterval(Duration.ofHours(1));
-        assertFalse(maxInactiveInterval.equals(session.getMaxInactiveInterval()));
+        assertNotEquals(maxInactiveInterval, session.getMaxInactiveInterval());
         duration = session.getIdleTime().minus(session.getMaxInactiveInterval());
         assertTrue(duration.getSeconds() <= 0 && duration.getSeconds() > -10);// nearly test
     }
@@ -120,30 +120,30 @@ public class RedisSessionTest {
         // base info
         assertEquals(session.getId(), session.getOriginalId());
 
-        assertTrue(session.getCreationTime().equals(session.getLastAccessedTime()));
+        assertEquals(session.getCreationTime(), session.getLastAccessedTime());
         long d1 = session.getCreationTime().getEpochSecond() - Instant.now().getEpochSecond();
         assertTrue(d1 <= 0 && d1 > -10);// nearly test
 
-        assertTrue(maxInactiveInterval.equals(session.getMaxInactiveInterval()));
+        assertEquals(maxInactiveInterval, session.getMaxInactiveInterval());
 
         Duration duration = session.getIdleTime().minus(session.getMaxInactiveInterval());
         assertTrue(duration.getSeconds() <= 0 && duration.getSeconds() > -10);// nearly test
 
         // attribute info
-        assertTrue(session.getAttributeNames().size() == 0);
+        assertEquals(0, session.getAttributeNames().size());
 
         String attrName = "user";
         User user = new User(10001L, "我是张三");
 
         session.setAttribute(attrName, user);
-        assertTrue(user.equals(session.getAttribute(attrName)));
+        assertEquals(user, session.getAttribute(attrName));
 
-        assertTrue(session.getAttributeNames().size() == 1);
+        assertEquals(1, session.getAttributeNames().size());
         assertTrue(session.getAttributeNames().contains(attrName));
 
         session.removeAttribute(attrName);
         assertNull(session.getAttribute(attrName));
-        assertTrue(session.getAttributeNames().size() == 0);
+        assertEquals(0, session.getAttributeNames().size());
     }
 
     public static class User implements Serializable {
@@ -154,14 +154,14 @@ public class RedisSessionTest {
 
         private String name;
 
-        public User(Long id, String name) {
+        User(Long id, String name) {
             this.id = id;
             this.name = name;
         }
 
         @Override
         public boolean equals(Object obj) {
-            if (obj == null || !(obj instanceof User)) {
+            if (!(obj instanceof User)) {
                 return false;
             }
 
@@ -174,7 +174,7 @@ public class RedisSessionTest {
     public void test_C_Manager() throws InterruptedException {
         sessionManager.setDefaultMaxInactiveInterval(Duration.ofHours(3));
         test_A_New();
-        assertTrue(session.getMaxInactiveInterval().equals(Duration.ofHours(3)));
+        assertEquals(session.getMaxInactiveInterval(), Duration.ofHours(3));
         test_B_Old();
 
         sessionManager.setSessionIdGenerator(new StandardSessionIdGenerator() {

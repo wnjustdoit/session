@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
- * Redis集群的属性配置
+ * Redis集群的属性配置.
  *
  * @author wangnan
  * @since 1.0

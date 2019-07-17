@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Redis Cluster相关配置
+ * Redis Cluster相关配置.
  *
  * @author wangnan
  * @since 1.0
