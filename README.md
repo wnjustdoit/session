@@ -4,10 +4,12 @@
 * 集成servlet api，直接使用传统方式进行会话操作；
 * 参照tomcat的session管理机制和spring-session项目进行重构；
 * 本项目依赖于[缓存模块](https://github.com/wnjustdoit/cache)，依赖核心模块的版本对应关系:
+
 session-redis|cache-redis|cache-redis-integration-spring|
 ---|-----|---
 v1.0.0|v1.0.0|v1.0.0
 v1.1.0|v1.1.0|v1.1.0
+
 * session-redis的http.web包，主要是针对B/S架构的实现
 
 #### 用法
@@ -36,3 +38,4 @@ v1.1.0|v1.1.0|v1.1.0
     </dependency>
 ```
 4. 基于servlet环境的推荐用法，见session-test模块（传统的手动操作用法，见session-test-traditional模块）
+
