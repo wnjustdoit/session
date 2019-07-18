@@ -35,4 +35,4 @@ v1.1.0|v1.1.0|v1.1.0
         <version>${latest-version}</version>
     </dependency>
 ```
-4. 基于servlet环境的用法，见session-test模块
+4. 基于servlet环境的推荐用法，见session-test模块（传统的手动操作用法，见session-test-traditional模块）

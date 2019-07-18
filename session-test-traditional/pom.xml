@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>session-test</artifactId>
+    <artifactId>session-test-traditional</artifactId>
     <packaging>war</packaging>
 
-    <name>session-test</name>
-    <description>会话与spring集成环境的测试与DEMO</description>
+    <name>session-test-traditional</name>
+    <description>会话与spring用传统的方式集成DEMO</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

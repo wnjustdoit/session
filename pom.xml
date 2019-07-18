@@ -3,16 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.caiya</groupId>
-    <artifactId>session</artifactId>
+    <artifactId>session-parent</artifactId>
     <version>1.1.0-SNAPSHOT</version>
     <modules>
         <module>session-api</module>
         <module>session-redis</module>
         <module>session-test</module>
+        <module>session-test-traditional</module>
     </modules>
     <packaging>pom</packaging>
 
-    <name>session</name>
-    <description>会话模块,统一封装,直接引入各个系统</description>
+    <name>session-parent</name>
+    <description>统一封装的会话模块，直接引入各个系统</description>
 
 </project>

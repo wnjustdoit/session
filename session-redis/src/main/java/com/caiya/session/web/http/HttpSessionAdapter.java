@@ -106,7 +106,7 @@ class HttpSessionAdapter<S extends Session> implements HttpSession {
     public String[] getValueNames() {
         checkState();
         Set<String> attrs = this.session.getAttributeNames();
-        return attrs.toArray(new String[attrs.size()]);
+        return attrs.toArray(new String[0]);
     }
 
     @Override

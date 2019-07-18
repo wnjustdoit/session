@@ -5,7 +5,8 @@ import com.caiya.session.Session;
 import com.caiya.session.SessionException;
 import com.caiya.session.SessionManager;
 import com.caiya.session.test.BaseTest;
-import com.caiya.session.test.util.Constant;
+import com.caiya.session.test.pojo.User;
+import com.caiya.session.test.util.SessionConstant;
 import com.caiya.session.util.StandardSessionIdGenerator;
 import org.junit.After;
 import org.junit.Before;
@@ -13,10 +14,8 @@ import org.junit.Test;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -39,14 +38,14 @@ public class RedisSessionTest extends BaseTest {
 
     private static String sessionId;
 
-    private static Duration maxInactiveInterval = Duration.ofSeconds(Constant.DEFAULT_EXPIRATION);
+    private static Duration maxInactiveInterval = SessionConstant.DEFAULT_EXPIRATION;
 
     private static Instant lastAccessedTime;
 
     @Before
     public void before() throws SessionException {
         sessionManager = new RedisSessionManager(new RedisCache<>(redisTemplate));
-        ((RedisSessionManager) sessionManager).setRedisKeyNamespace(Constant.DEFAULT_SESSION_NAMESPACE);
+        ((RedisSessionManager) sessionManager).setRedisKeyNamespace(SessionConstant.DEFAULT_SESSION_NAMESPACE);
         session = sessionManager.createSession();
     }
 
@@ -127,30 +126,6 @@ public class RedisSessionTest extends BaseTest {
         session.removeAttribute(attrName);
         assertNull(session.getAttribute(attrName));
         assertEquals(0, session.getAttributeNames().size());
-    }
-
-    public static class User implements Serializable {
-
-        private static final long serialVersionUID = -8741794542106019386L;
-
-        private Long id;
-
-        private String name;
-
-        User(Long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (!(obj instanceof User)) {
-                return false;
-            }
-
-            User param = (User) obj;
-            return Objects.equals(id, param.id) && Objects.equals(name, param.name);
-        }
     }
 
     @Test

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * @since 1.0
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping()
 public class TestController {
 
 
@@ -25,6 +25,7 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(HttpServletRequest request, HttpServletResponse response) {
+
         return "OK";
     }
 
